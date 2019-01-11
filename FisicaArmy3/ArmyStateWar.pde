@@ -2,6 +2,7 @@ class ArmyStateWar implements ArmyState {
 
   Army      army;
   FContact  firstContact;
+  PVector   positionContact = new PVector();
 
   int       frameCount;
   int       colisionFrame  = 50;
@@ -21,8 +22,8 @@ class ArmyStateWar implements ArmyState {
     frameCount++;
     if ((frameCount%(20*(int)random(1,3))==0 || frameCount%50==0) && frameCount>colisionFrame) { //After 50 frames - move towa
       for (Soldier s : army.soldiers) {
-        float dx = -s.getX() + firstContact.getX(); //s.army.absolutPosition.x;
-        float dy = -s.getY() + firstContact.getY();//s.army.absolutPosition.y;
+        float dx = -s.getX() + positionContact.x; //s.army.absolutPosition.x;
+        float dy = -s.getY() + positionContact.y;//s.army.absolutPosition.y;
         PVector p = new PVector(dx,dy);
         //p.normalize();
         p.mult(0.25*random(1,3));
@@ -42,6 +43,7 @@ class ArmyStateWar implements ArmyState {
   void contactStarted(FContact c) {
     if(this.firstContact==null){
       this.firstContact = c;
+      this.positionContact = new PVector(c.getX(),c.getY());
     }
     
     if(frameCount > colisionFrame){

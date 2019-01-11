@@ -61,6 +61,8 @@ void moveMap(float dx, float dy){
     
     ap.army.absolutPosition.add(dx,dy);
     
+    ((ArmyStateWar)(ap.army.armyWar)).positionContact.add(dx,dy);
+    
     for(Soldier s:ap.army.soldiers){
       s.setPosition(s.getX()+dx,s.getY()+dy);
       //s.relPosition.set(s.relPosition.x +dx, s.relPosition.y + dy);
