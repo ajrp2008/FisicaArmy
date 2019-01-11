@@ -3,8 +3,10 @@ import fisica.*;
 FWorld  world;
 ArmySelector     armySelector    = new ArmySelector();  
 
+String debugText = "DEBUG";
+
 void setup(){
-  size(400,400);
+  size(1440,2960);
   smooth();
   Fisica.init(this);
   world = new FWorld();
@@ -16,20 +18,61 @@ void setup(){
 }
 
 void draw(){
-  background(255);
+  background(100);
+  
+  textSize(30); 
+  text(debugText,30,30);
+  
+  
   world.step();
   armySelector.drawSelector();
   armySelector.update();
   world.draw();
+  
+
 }
 
 void mousePressed(){
-  armySelector.selectArmy(mouseX,mouseY);
+  boolean result = armySelector.selectArmy(mouseX,mouseY);
+  
+  debugText = "MOUSE PRESSED";
+
 }
 
 void mouseDragged(){
-  armySelector.moveArmy(mouseX,mouseY);
+  boolean result = armySelector.moveArmy(mouseX,mouseY);
+  
+  debugText = "MOUSE DRAGGED:" + (mouseX - pmouseX);
+  
+  if(!result){
+    moveMap(mouseX-pmouseX,mouseY-pmouseY);
+  }
+  
 }
+
+void moveMap(float dx, float dy){
+  
+  for(ArmyPathFinder ap:armySelector.armyList){
+    
+    for(PVector wp:ap.wayPoints){
+      wp.add(dx,dy);
+    }
+    
+    ap.army.absolutPosition.add(dx,dy);
+    
+    for(Soldier s:ap.army.soldiers){
+      s.setPosition(s.getX()+dx,s.getY()+dy);
+      //s.relPosition.set(s.relPosition.x +dx, s.relPosition.y + dy);
+    }
+    
+  }
+  
+}
+
+
+
+
+
 
 void contactStarted(FContact c) {
     if(!c.getBody1().getName().equals(c.getBody2().getName())){

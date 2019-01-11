@@ -6,10 +6,10 @@ class ArmySelector{
     armyList.add(a);
   }
 
-  void selectArmy(float x, float y){
+  boolean selectArmy(float x, float y){
     ArmyPathFinder targetArmy = null;
     for(ArmyPathFinder a: armyList){
-        if(dist(a.army.absolutPosition.x,a.army.absolutPosition.y,x,y)<25){
+        if(dist(a.army.absolutPosition.x,a.army.absolutPosition.y,x,y)<50){
           if(selectedArmy != null && !a.wayPoints.isEmpty()){
             targetArmy = a; 
             targetArmy.wayPoints.clear();
@@ -19,12 +19,17 @@ class ArmySelector{
         }
     }
     selectedArmy = targetArmy;
+  
+    return selectedArmy != null;
   }
 
-  void moveArmy(float x, float y){
+  boolean moveArmy(float x, float y){
     if(selectedArmy!=null){
       selectedArmy.addWayPoint(x,y);
     }
+    
+    return    selectedArmy != null;
+
   }
 
   void update(){
@@ -36,6 +41,8 @@ class ArmySelector{
   void drawSelector(){
     for(ArmyPathFinder a: armyList){
       a.drawWayPoints();
+      
+      ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
     }
     if(selectedArmy!=null && selectedArmy.wayPoints.isEmpty()){
         PVector p =selectedArmy.army.absolutPosition;
