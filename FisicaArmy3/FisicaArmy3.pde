@@ -19,7 +19,7 @@ void setup(){
 }
 
 void draw(){
-  background(100);
+  background(40);
   
   textSize(30); 
   text(debugText,30,30);
