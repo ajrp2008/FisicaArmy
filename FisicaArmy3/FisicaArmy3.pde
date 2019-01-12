@@ -62,17 +62,12 @@ void mouseDragged(){
 }
 
 void zoomMap(){
-    GameConstants.soldierSize++;
-    GameConstants.armyGapFactor=1.1;
+    
+    GameConstants.zoomFactor=1.1;
 
     for(ArmyPathFinder ap:armySelector.armyList){
-          for(Soldier s:ap.army.soldiers){
-            s.updateSoldierSize();
-            s.updateArmyGapSize();
-          }
-      
+      ap.army.updateArmyPositioWithFactor();
     }
-  
 }
 
 

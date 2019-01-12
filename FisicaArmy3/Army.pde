@@ -22,6 +22,17 @@ class Army{
     initSquareFormation(this);
   }
   
+  void updateArmyPositioWithFactor(){
+    absolutPosition.mult(GameConstants.zoomFactor);
+    
+        for(Soldier s: soldiers){
+            s.updateSoldierWithFactorSize();
+            s.updateArmyGapWithFactorSize();
+          }
+    
+    
+  }
+  
   void commandArmyPosition(float x, float y){
     armyState.commandArmyPosition(x,y);
   }

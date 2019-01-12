@@ -16,12 +16,13 @@ class Soldier extends FCircle{
     world.add(this);
   }
   
-  void updateSoldierSize(){
-    setSize(GameConstants.soldierSize);    
+  void updateSoldierWithFactorSize(){
+    setSize(getSize()*GameConstants.zoomFactor);    
   }
   
-  void updateArmyGapSize(){
-    relPosition.mult(GameConstants.armyGapFactor);
+  void updateArmyGapWithFactorSize(){
+    relPosition.mult(GameConstants.zoomFactor);
+    setPosition(army.absolutPosition.x + relPosition.x,army.absolutPosition.y + relPosition.y);
   }
   
   
