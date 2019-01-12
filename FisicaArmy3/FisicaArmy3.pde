@@ -14,15 +14,20 @@ void setup(){
   world.setGravity(0,0);
   ellipseMode(CENTER);
   armySelector.addArmy(new ArmyPathFinder(new Army(100,100,"A",0,255,0)));
-  armySelector.addArmy(new ArmyPathFinder(new Army(200,150,"B",0,0,0)));
+  armySelector.addArmy(new ArmyPathFinder(new Army(200,150,"B",255,255,255)));
   armySelector.addArmy(new ArmyPathFinder(new Army(100,200,"C",200,0,0)));
 }
 
 void draw(){
   background(40);
-  
+ 
+  //ZOOM BUTTON 
+  rect(1000,40,200,200);
+ 
+  //DEBUG TEXT 
   textSize(30); 
   text(debugText,30,30);
+  
   
   
   world.step();
@@ -37,6 +42,11 @@ void mousePressed(){
   boolean result = armySelector.selectArmy(mouseX,mouseY);
   
   debugText = "MOUSE PRESSED";
+  
+  if(mouseX >1000 && mouseX < 1200 && mouseY > 40 && mouseY < 240){
+    debugText = "ZOOM BUTTON PRESSED";
+    zoomMap();
+  }
 
 }
 
@@ -50,6 +60,21 @@ void mouseDragged(){
   }
   
 }
+
+void zoomMap(){
+    GameConstants.soldierSize++;
+    GameConstants.armyGapFactor=1.1;
+
+    for(ArmyPathFinder ap:armySelector.armyList){
+          for(Soldier s:ap.army.soldiers){
+            s.updateSoldierSize();
+            s.updateArmyGapSize();
+          }
+      
+    }
+  
+}
+
 
 void moveMap(float dx, float dy){
   

@@ -1,12 +1,12 @@
 class Soldier extends FCircle{
-  
+    
   PVector  relPosition    =  new PVector();
   Army     army;
   
   boolean  isAlive        = true;
     
   Soldier(Army army,PVector relPos){
-    super(4);
+    super(GameConstants.soldierSize);
     this.army         = army;
     this.relPosition  = relPos;
     setPosition(army.absolutPosition.x + relPos.x,army.absolutPosition.y + relPos.y);
@@ -15,6 +15,15 @@ class Soldier extends FCircle{
     setName(army.name);
     world.add(this);
   }
+  
+  void updateSoldierSize(){
+    setSize(GameConstants.soldierSize);    
+  }
+  
+  void updateArmyGapSize(){
+    relPosition.mult(GameConstants.armyGapFactor);
+  }
+  
   
   void updatePosition(){
     if(isMarching()){

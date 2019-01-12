@@ -42,7 +42,7 @@ class ArmySelector{
     for(ArmyPathFinder a: armyList){
       a.drawWayPoints();
       
-      ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
+      //ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
     }
     if(selectedArmy!=null && selectedArmy.wayPoints.isEmpty()){
         PVector p =selectedArmy.army.absolutPosition;
