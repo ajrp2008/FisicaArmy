@@ -37,6 +37,11 @@ class ArmyStateMarch implements ArmyState{
   }
   
   void updateArmyToZoom(){
+    army.absolutPosition.mult(GameConstants.zoomFactor);
+        for(Soldier s: army.soldiers){
+            s.updateSoldierSizeToZoom();
+            s.updateSoldierPositionToZoom();
+          }
   }
   
   boolean isMarching(){

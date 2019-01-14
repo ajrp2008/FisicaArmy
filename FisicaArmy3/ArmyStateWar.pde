@@ -38,6 +38,13 @@ class ArmyStateWar implements ArmyState {
   
     
   void updateArmyToZoom(){
+    positionContact.mult(GameConstants.zoomFactor);
+     army.absolutPosition.mult(GameConstants.zoomFactor);
+        for(Soldier s: army.soldiers){
+            s.updateSoldierSizeToZoom();
+            //s.updateSoldierPositionToZoom();
+            s.setPosition(s.getX()*GameConstants.zoomFactor,s.getY()*GameConstants.zoomFactor);
+          }
   }
 
   boolean isMarching() {

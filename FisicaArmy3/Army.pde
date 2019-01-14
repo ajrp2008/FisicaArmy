@@ -22,15 +22,6 @@ class Army{
     initSquareFormation(this);
   }
   
-  void updateArmyToZoom(){
-    ((ArmyStateWar)armyWar).positionContact.mult(GameConstants.zoomFactor);
-    absolutPosition.mult(GameConstants.zoomFactor);
-        for(Soldier s: soldiers){
-            s.updateSoldierSizeToZoom();
-            s.updateSoldierPositionToZoom();
-          }
-  }
-  
   PVector meanSoldierPosition(){
     PVector meanPos  = new PVector();
     float   armySize = 0;
@@ -41,7 +32,10 @@ class Army{
     meanPos.div(armySize);
     
     return meanPos;
-    
+  }
+  
+  void updateArmyToZoom(){
+    armyState.updateArmyToZoom();
   }
   
   void commandArmyPosition(float x, float y){
