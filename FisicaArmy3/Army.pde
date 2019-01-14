@@ -23,6 +23,7 @@ class Army{
   }
   
   void updateArmyPositioWithFactor(){
+    ((ArmyStateWar)armyWar).positionContact.mult(GameConstants.zoomFactor);
     absolutPosition.mult(GameConstants.zoomFactor);
         for(Soldier s: soldiers){
             s.updateSoldierWithFactorSize();
@@ -31,11 +32,13 @@ class Army{
   }
   
   PVector meanSoldierPosition(){
-    PVector meanPos = new PVector();
+    PVector meanPos  = new PVector();
+    float   armySize = 0;
     for(Soldier s: soldiers){
       meanPos.add(s.getX(),s.getY());
+      if(s.isAlive)armySize++;
     }
-    meanPos.div(soldiers.size());
+    meanPos.div(armySize);
     
     return meanPos;
     

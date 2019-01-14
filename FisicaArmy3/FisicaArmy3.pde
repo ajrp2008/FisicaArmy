@@ -19,7 +19,7 @@ void setup(){
 }
 
 void draw(){
-  background(40);
+  background(50);
  
   //ZOOM-IN BUTTON 
   rect(1200,40,200,190);
@@ -29,7 +29,7 @@ void draw(){
 
  
   //DEBUG TEXT 
-  textSize(30); 
+  textSize(40); 
   fill(200,0,0);
   text(debugText,70,70);
   
