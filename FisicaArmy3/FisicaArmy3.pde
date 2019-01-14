@@ -22,15 +22,16 @@ void draw(){
   background(40);
  
   //ZOOM-IN BUTTON 
-  rect(1000,40,200,200);
+  rect(1200,40,200,190);
 
   //ZOOM-OUT BUTTON 
-  rect(1000,240,200,200);
+  rect(1200,240,200,190);
 
  
   //DEBUG TEXT 
   textSize(30); 
-  text(debugText,30,30);
+  fill(200,0,0);
+  text(debugText,70,70);
   
   
   
@@ -47,12 +48,12 @@ void mousePressed(){
   
   debugText = "MOUSE PRESSED";
   
-  if(mouseX >1000 && mouseX < 1200 && mouseY > 40 && mouseY < 240){
+  if(mouseX >1200 && mouseX < 1400 && mouseY > 40 && mouseY < 240){
     debugText = "ZOOM-IN BUTTON PRESSED";
     GameConstants.zoomFactor=1.1;
     zoomMap();
   }
-  if(mouseX >1000 && mouseX < 1200 && mouseY > 240 && mouseY < 440){
+  if(mouseX >1200 && mouseX < 1400 && mouseY > 240 && mouseY < 440){
     debugText = "ZOOM-OUT BUTTON PRESSED";
     GameConstants.zoomFactor=0.9;
     zoomMap();
@@ -71,9 +72,7 @@ void mouseDragged(){
 }
 
 void zoomMap(){
-    for(ArmyPathFinder ap:armySelector.armyList){
-      ap.updateWithZoomFactor();
-    }
+  armySelector.updateWithZoomFactor();
 }
 
 

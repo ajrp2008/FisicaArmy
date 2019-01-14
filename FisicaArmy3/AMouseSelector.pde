@@ -1,6 +1,8 @@
 class ArmySelector{
-  ArmyPathFinder             selectedArmy  = null;
-  ArrayList<ArmyPathFinder>  armyList      = new ArrayList<ArmyPathFinder>();
+  float                     armySelectorSize   = GameConstants.armySelectorSizeStart;
+  
+  ArmyPathFinder             selectedArmy      = null;
+  ArrayList<ArmyPathFinder>  armyList          = new ArrayList<ArmyPathFinder>();
 
   void addArmy(ArmyPathFinder a){
     armyList.add(a);
@@ -14,7 +16,7 @@ class ArmySelector{
     for(ArmyPathFinder a: armyList){
           PVector msp = a.army.meanSoldierPosition();
       
-        if(dist(msp.x,msp.y,x,y)<50){
+        if(dist(msp.x,msp.y,x,y)<armySelectorSize){
           if(selectedArmy != null && !a.wayPoints.isEmpty()){
             targetArmy = a; 
             targetArmy.wayPoints.clear();
@@ -32,11 +34,16 @@ class ArmySelector{
     if(selectedArmy!=null){
       selectedArmy.addWayPoint(x,y);
     }
-    
     return    selectedArmy != null;
-
   }
-
+  
+  void updateWithZoomFactor(){
+      armySelectorSize *= GameConstants.zoomFactor;
+      for(ArmyPathFinder ap:this.armyList){
+        ap.updateWithZoomFactor();
+      }
+  }
+  
   void update(){
     for(ArmyPathFinder a: armyList){
       a.update();
@@ -49,8 +56,8 @@ class ArmySelector{
       
       //CENTER OF ARMY///////////////////////////
       PVector msp = a.army.meanSoldierPosition();
-      fill(200);
-      ellipse(msp.x,msp.y,20,20);
+      fill(30);
+      ellipse(msp.x,msp.y,armySelectorSize,armySelectorSize);
       ///////////////////////////////////////////
       
       //ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
