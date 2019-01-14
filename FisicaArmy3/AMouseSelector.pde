@@ -8,8 +8,13 @@ class ArmySelector{
 
   boolean selectArmy(float x, float y){
     ArmyPathFinder targetArmy = null;
+    
+
+    
     for(ArmyPathFinder a: armyList){
-        if(dist(a.army.absolutPosition.x,a.army.absolutPosition.y,x,y)<50){
+          PVector msp = a.army.meanSoldierPosition();
+      
+        if(dist(msp.x,msp.y,x,y)<50){
           if(selectedArmy != null && !a.wayPoints.isEmpty()){
             targetArmy = a; 
             targetArmy.wayPoints.clear();
