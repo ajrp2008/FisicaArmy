@@ -1,5 +1,7 @@
 class ArmyPathFinder{
-
+  
+  float wayPointsGap = GameConstants.wayPointGapStart;
+  
   ArrayList<PVector> wayPoints = new ArrayList<PVector>();
   PVector nextPoint;
   Army army;
@@ -21,11 +23,20 @@ class ArmyPathFinder{
     }  
   }
   
+    void updateWithZoomFactor(){
+      wayPointsGap *= GameConstants.zoomFactor;
+      army.updateArmyPositioWithFactor();
+      for(PVector wp : wayPoints){
+        wp.mult(GameConstants.zoomFactor);
+      }
+    }
+  
   void addWayPoint(float x, float y){
       PVector lastPoint  = wayPoints.isEmpty() ? army.absolutPosition : wayPoints.get(wayPoints.size()-1);
       float distance     = dist(lastPoint.x,lastPoint.y,x,y);
-      if(distance > 20)
-        wayPoints.add(new PVector(x,y));
+      
+      if(distance > wayPointsGap)
+       wayPoints.add(new PVector(x,y));
   }
   
   void drawWayPoints(){

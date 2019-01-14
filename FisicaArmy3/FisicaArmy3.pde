@@ -72,7 +72,7 @@ void mouseDragged(){
 
 void zoomMap(){
     for(ArmyPathFinder ap:armySelector.armyList){
-      ap.army.updateArmyPositioWithFactor();
+      ap.updateWithZoomFactor();
     }
 }
 

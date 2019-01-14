@@ -13,6 +13,6 @@ void initSquareFormation(Army army) {
     int column         = i%(int)length; 
     int row            = i/(int)length; 
     Soldier s = army.soldiers.get(i);
-    s.relPosition.set((column-(length-1.0)/2.0)*GameConstants.armyGapSize, (row-(length-1)/2)*GameConstants.armyGapSize);
+    s.relPosition.set((column-(length-1.0)/2.0)*GameConstants.armyGapSizeStart, (row-(length-1)/2)*GameConstants.armyGapSizeStart);
   }
 }

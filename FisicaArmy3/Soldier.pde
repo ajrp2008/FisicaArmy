@@ -4,9 +4,11 @@ class Soldier extends FCircle{
   Army     army;
   
   boolean  isAlive        = true;
+  
+  float    speed          = GameConstants.soldierSpeedStart;
     
   Soldier(Army army,PVector relPos){
-    super(GameConstants.soldierSize);
+    super(GameConstants.soldierSizeStart);
     this.army         = army;
     this.relPosition  = relPos;
     setPosition(army.absolutPosition.x + relPos.x,army.absolutPosition.y + relPos.y);
@@ -17,6 +19,7 @@ class Soldier extends FCircle{
   }
   
   void updateSoldierWithFactorSize(){
+    speed *= GameConstants.zoomFactor;
     setSize(getSize()*GameConstants.zoomFactor);    
   }
   
@@ -30,7 +33,7 @@ class Soldier extends FCircle{
     if(isMarching()){
       PVector p  = new PVector(-getX()+(army.absolutPosition.x + relPosition.x), -getY()+(army.absolutPosition.y + relPosition.y));
       p.normalize();
-      p.mult(30);
+      p.mult(speed);
       setVelocity(p.x,p.y);
     }else{
       setVelocity(0,0);
