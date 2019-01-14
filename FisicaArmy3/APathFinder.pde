@@ -25,7 +25,7 @@ class ArmyPathFinder{
   
     void updateWithZoomFactor(){
       wayPointsGap *= GameConstants.zoomFactor;
-      army.updateArmyPositioWithFactor();
+      army.updateArmyToZoom();
       for(PVector wp : wayPoints){
         wp.mult(GameConstants.zoomFactor);
       }

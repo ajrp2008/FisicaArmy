@@ -22,12 +22,12 @@ class Army{
     initSquareFormation(this);
   }
   
-  void updateArmyPositioWithFactor(){
+  void updateArmyToZoom(){
     ((ArmyStateWar)armyWar).positionContact.mult(GameConstants.zoomFactor);
     absolutPosition.mult(GameConstants.zoomFactor);
         for(Soldier s: soldiers){
-            s.updateSoldierWithFactorSize();
-            s.updateArmyGapWithFactorSize();
+            s.updateSoldierSizeToZoom();
+            s.updateSoldierPositionToZoom();
           }
   }
   

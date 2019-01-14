@@ -35,6 +35,10 @@ class ArmyStateWar implements ArmyState {
 
   void updateState() {
   }
+  
+    
+  void updateArmyToZoom(){
+  }
 
   boolean isMarching() {
     return true;

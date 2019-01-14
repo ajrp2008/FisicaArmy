@@ -12,4 +12,6 @@ interface ArmyState{
     
     void contactStarted(FContact c);
     
+    void updateArmyToZoom();
+    
 }
