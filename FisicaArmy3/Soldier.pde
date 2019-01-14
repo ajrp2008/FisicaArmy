@@ -46,7 +46,7 @@ class Soldier extends FCircle{
   
   boolean isMarching(){
     float e = dist(getX(),getY(),army.absolutPosition.x+relPosition.x,army.absolutPosition.y+relPosition.y);
-    if(e > 1)return true;else return false;
+    if(e > 3)return true;else return false;
   }
 
   void attack(Soldier opponent){
