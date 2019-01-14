@@ -24,12 +24,20 @@ class Army{
   
   void updateArmyPositioWithFactor(){
     absolutPosition.mult(GameConstants.zoomFactor);
-    
         for(Soldier s: soldiers){
             s.updateSoldierWithFactorSize();
             s.updateArmyGapWithFactorSize();
           }
+  }
+  
+  PVector meanSoldierPosition(){
+    PVector meanPos = new PVector();
+    for(Soldier s: soldiers){
+      meanPos.add(s.getX(),s.getY());
+    }
+    meanPos.div(soldiers.size());
     
+    return meanPos;
     
   }
   

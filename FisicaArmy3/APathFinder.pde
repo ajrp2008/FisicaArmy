@@ -44,6 +44,8 @@ class ArmyPathFinder{
       if(army.armyState != army.armyWar)
         ellipse(p.x,p.y,2,2);
     }
+    
+    
   }
   
 

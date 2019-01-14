@@ -42,6 +42,12 @@ class ArmySelector{
     for(ArmyPathFinder a: armyList){
       a.drawWayPoints();
       
+      //CENTER OF ARMY///////////////////////////
+      PVector msp = a.army.meanSoldierPosition();
+      fill(200);
+      ellipse(msp.x,msp.y,20,20);
+      ///////////////////////////////////////////
+      
       //ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
     }
     if(selectedArmy!=null && selectedArmy.wayPoints.isEmpty()){
