@@ -17,6 +17,11 @@ void setup(){
   armySelector.addArmy(new ArmyPathFinder(new Army(200,150,"B",255,255,255)));
   armySelector.addArmy(new ArmyPathFinder(new Army(100,200,"C",200,0,0)));
   
+    armySelector.addArmy(new ArmyPathFinder(new Army(400,100,"D",0,255,0)));
+  armySelector.addArmy(new ArmyPathFinder(new Army(600,150,"E",255,255,255)));
+  armySelector.addArmy(new ArmyPathFinder(new Army(400,200,"F",200,0,0)));
+  
+  
   zoomInButton = new Button(width-(300+50), (50), 300, 100);
   zoomInButton.setText("Zoom In");
  // zoomInButton.setLocalColorScheme(G4P.RED_SCHEME);
