@@ -48,8 +48,11 @@ class ArmyPathFinder{
   
   void drawWayPoints(){
     for(PVector p: wayPoints){
-      if(army.armyState != army.armyWar)
-        ellipse(p.x,p.y,2,2);
+      if(army.armyState != army.armyWar){
+        fill(255,255,255);
+        noStroke();
+        ellipse(p.x,p.y,4,4);
+      }
     }
     
     

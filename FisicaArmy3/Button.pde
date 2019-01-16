@@ -1,5 +1,7 @@
 class Button{
  
+  boolean isPressed = false;
+  
   float x,y,w,h;
   float r=100,g=0,b=0;
   String text;
@@ -19,19 +21,16 @@ class Button{
   void setText(String text){
     this.text = text;
   }
-
-  void release(){
-    g=0;
-  }
   
   boolean isPushed(float x, float y){
     boolean isClicked = ((this.x < x && (this.x+w)>x))&(this.y < y && (this.y + h) > y);
-    if(isClicked){g=200;}
+    if(isClicked){g=200;isPressed = true;}
     return isClicked;
   }
-  
-  
-  
-  
+
+  void release(){
+    isPressed = false;
+    g=0;
+  }  
 }
   
