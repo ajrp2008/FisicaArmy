@@ -50,7 +50,6 @@ void mousePressed(){
   
   if(mouseX >1200 && mouseX < 1400 && mouseY > 40 && mouseY < 240){
     debugText = "ZOOM-IN BUTTON PRESSED";
-    GameConstants.zoomFactor=1.1;
     zoomMap();
   }
   if(mouseX >1200 && mouseX < 1400 && mouseY > 240 && mouseY < 440){
@@ -72,6 +71,7 @@ void mouseDragged(){
 }
 
 void zoomMap(){
+  GameConstants.zoomFactor=1.1;
   armySelector.updateWithZoomFactor();
 }
 
