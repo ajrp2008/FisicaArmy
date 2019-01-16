@@ -50,12 +50,11 @@ void mousePressed(){
   
   if(mouseX >1200 && mouseX < 1400 && mouseY > 40 && mouseY < 240){
     debugText = "ZOOM-IN BUTTON PRESSED";
-    zoomMap();
+    zoomMap(1.1);
   }
   if(mouseX >1200 && mouseX < 1400 && mouseY > 240 && mouseY < 440){
     debugText = "ZOOM-OUT BUTTON PRESSED";
-    GameConstants.zoomFactor=0.9;
-    zoomMap();
+    zoomMap(0.9);
   }
 }
 
@@ -70,36 +69,15 @@ void mouseDragged(){
   
 }
 
-void zoomMap(){
-  GameConstants.zoomFactor=1.1;
+void zoomMap(float zoom){
+  GameConstants.zoomFactor = zoom;
   armySelector.updateWithZoomFactor();
 }
 
 
 void moveMap(float dx, float dy){
-  
-  for(ArmyPathFinder ap:armySelector.armyList){
-    
-    for(PVector wp:ap.wayPoints){
-      wp.add(dx,dy);
-    }
-    
-    ap.army.absolutPosition.add(dx,dy);
-    
-    ((ArmyStateWar)(ap.army.armyWar)).positionContact.add(dx,dy);
-    
-    for(Soldier s:ap.army.soldiers){
-      s.setPosition(s.getX()+dx,s.getY()+dy);
-      //s.relPosition.set(s.relPosition.x +dx, s.relPosition.y + dy);
-    }
-    
-  }
-  
+  armySelector.updateMapPosition(dx,dy);
 }
-
-
-
-
 
 
 void contactStarted(FContact c) {

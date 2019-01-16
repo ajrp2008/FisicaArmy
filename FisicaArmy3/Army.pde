@@ -38,6 +38,14 @@ class Army{
     armyState.updateArmyToZoom();
   }
   
+  void updateMapPosition(float dx, float dy){
+    absolutPosition.add(dx, dy);
+      ((ArmyStateWar)(armyWar)).positionContact.add(dx, dy);
+      for (Soldier s :soldiers) {
+        s.setPosition(s.getX()+dx, s.getY()+dy);
+      }
+  }
+  
   void commandArmyPosition(float x, float y){
     armyState.commandArmyPosition(x,y);
   }

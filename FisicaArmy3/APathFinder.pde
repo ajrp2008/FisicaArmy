@@ -30,6 +30,13 @@ class ArmyPathFinder{
         wp.mult(GameConstants.zoomFactor);
       }
     }
+    
+    void updateMapPosition(float dx, float dy){
+    for (PVector wp : wayPoints) {
+        wp.add(dx, dy);
+      }
+      army.updateMapPosition(dx,dy);
+    }
   
   void addWayPoint(float x, float y){
       PVector lastPoint  = wayPoints.isEmpty() ? army.absolutPosition : wayPoints.get(wayPoints.size()-1);
