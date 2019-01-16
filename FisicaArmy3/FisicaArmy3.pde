@@ -1,15 +1,10 @@
 import fisica.*;
-import g4p_controls.*;
-import java.awt.Font;
 
-//small test change
 FWorld  world;
 ArmySelector     armySelector    = new ArmySelector();  
-
 String debugText = "DEBUG";
 
-GButton zoomInButton,zoomOutButton; 
-
+Button zoomInButton,zoomOutButton; 
 
 void setup(){
   size(1440,2960);
@@ -22,17 +17,17 @@ void setup(){
   armySelector.addArmy(new ArmyPathFinder(new Army(200,150,"B",255,255,255)));
   armySelector.addArmy(new ArmyPathFinder(new Army(100,200,"C",200,0,0)));
   
-  zoomInButton = new GButton(this, width-(160+30), (30), 160, 80);
+  zoomInButton = new Button(width-(160+30), (30), 160, 80);
   zoomInButton.setText("Zoom In");
-  zoomInButton.setLocalColorScheme(G4P.RED_SCHEME);
-  zoomInButton.setFont(new Font("Monospaced", Font.PLAIN, 22));
-  zoomInButton.addEventHandler(this, "zoomInButton_click");
+ // zoomInButton.setLocalColorScheme(G4P.RED_SCHEME);
+ // zoomInButton.setFont(new Font("Monospaced", Font.PLAIN, 22));
+ // zoomInButton.addEventHandler(this, "zoomInButton_click");
   
-  zoomOutButton = new GButton(this, width-(160+30), (30+80+30), 160, 80);
+  zoomOutButton = new Button(width-(160+30), (30+80+30), 160, 80);
   zoomOutButton.setText("Zoom Out");
-  zoomOutButton.setLocalColorScheme(G4P.RED_SCHEME);
-  zoomOutButton.setFont(new Font("Monospaced", Font.PLAIN, 22));
-  zoomOutButton.addEventHandler(this, "zoomOutButton_click");
+//  zoomOutButton.setLocalColorScheme(G4P.RED_SCHEME);
+ // zoomOutButton.setFont(new Font("Monospaced", Font.PLAIN, 22));
+ // zoomOutButton.addEventHandler(this, "zoomOutButton_click");
 }
 
 void draw(){
@@ -42,25 +37,30 @@ void draw(){
   fill(200,0,0);
   text(debugText,70,70);
   
+  zoomInButton.display();
+  zoomOutButton.display();
+  
   world.step();
   armySelector.drawSelector();
   armySelector.update();
   world.draw();
 }
 
-public void zoomInButton_click(GButton source, GEvent event) {
+void mousePressed(){
+  boolean result = armySelector.selectArmy(mouseX,mouseY);
+  debugText = "MOUSE PRESSED";
+  if(zoomInButton.isPushed(mouseX,mouseY)) zoomInButton_click();
+  if(zoomOutButton.isPushed(mouseX,mouseY)) zoomOutButton_click();
+}
+
+public void zoomInButton_click() {
   zoomMap(1.1);
   debugText = "ZOOM-IN BUTTON PRESSED";
 }
 
-public void zoomOutButton_click(GButton source, GEvent event) {
+public void zoomOutButton_click() {
   zoomMap(0.9);
   debugText = "ZOOM-OUT BUTTON PRESSED";
-}
-
-void mousePressed(){
-  boolean result = armySelector.selectArmy(mouseX,mouseY);
-  debugText = "MOUSE PRESSED";
 }
 
 void mouseDragged(){
@@ -71,11 +71,15 @@ void mouseDragged(){
   }
 }
 
+void mouseReleased(){
+  zoomInButton.release();
+  zoomOutButton.release();
+}
+
 void zoomMap(float zoom){
   GameConstants.zoomFactor = zoom;
   armySelector.updateWithZoomFactor();
 }
-
 
 void moveMap(float dx, float dy){
   armySelector.updateMapPosition(dx,dy);
