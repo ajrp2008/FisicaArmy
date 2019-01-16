@@ -60,8 +60,11 @@ class ArmySelector {
 
       //CENTER OF ARMY///////////////////////////
       PVector msp = a.army.meanSoldierPosition();
-      fill(30);
+      noStroke();
+      fill(30,0,0,100);
+      if(a == selectedArmy) fill(255,255,0,100);
       ellipse(msp.x, msp.y, armySelectorSize, armySelectorSize);
+      stroke(255,0,0);
       ///////////////////////////////////////////
 
       //ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
