@@ -17,13 +17,13 @@ void setup(){
   armySelector.addArmy(new ArmyPathFinder(new Army(200,150,"B",255,255,255)));
   armySelector.addArmy(new ArmyPathFinder(new Army(100,200,"C",200,0,0)));
   
-  zoomInButton = new Button(width-(160+30), (30), 160, 80);
+  zoomInButton = new Button(width-(300+50), (50), 300, 100);
   zoomInButton.setText("Zoom In");
  // zoomInButton.setLocalColorScheme(G4P.RED_SCHEME);
  // zoomInButton.setFont(new Font("Monospaced", Font.PLAIN, 22));
  // zoomInButton.addEventHandler(this, "zoomInButton_click");
   
-  zoomOutButton = new Button(width-(160+30), (30+80+30), 160, 80);
+  zoomOutButton = new Button(width-(300+50), (50+100+50), 300, 100);
   zoomOutButton.setText("Zoom Out");
 //  zoomOutButton.setLocalColorScheme(G4P.RED_SCHEME);
  // zoomOutButton.setFont(new Font("Monospaced", Font.PLAIN, 22));

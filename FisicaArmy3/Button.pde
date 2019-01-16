@@ -1,7 +1,7 @@
 class Button{
  
   float x,y,w,h;
-  float r=255,g=0,b=0;
+  float r=100,g=0,b=0;
   String text;
   
   Button(float x, float y, float w, float h){
