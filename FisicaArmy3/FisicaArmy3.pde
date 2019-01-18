@@ -6,7 +6,8 @@ Button            zoomInButton,zoomOutButton;
 
 
 void setup(){
-  size(1440,2960);
+  //size(1440,2960);
+  fullScreen();
   smooth();
   
   Fisica.init(this);
@@ -34,7 +35,7 @@ void draw(){
   //DEBUG TEXT 
   textSize(40); 
   fill(200,0,0);
- // text(GameConstants.debugText,70,70);
+   text(GameConstants.zoomFactor,70,70);
   //  
   world.step();
   armySelector.drawSelector();
