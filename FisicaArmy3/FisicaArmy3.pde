@@ -28,6 +28,8 @@ void setup(){
   
   zoomOutButton = new Button(width-(300+50), (50+100+50), 300, 100);
   zoomOutButton.setText("Zoom Out");
+  
+  zoomMap(4);
 }
 
 void draw(){
@@ -35,7 +37,7 @@ void draw(){
   //DEBUG TEXT 
   textSize(40); 
   fill(200,0,0);
-   text(GameConstants.zoomFactor,70,70);
+   text("zoomFactorAccum: "+GameConstants.zoomFactorAccumulated,70,70);
   //  
   world.step();
   armySelector.drawSelector();
@@ -77,6 +79,7 @@ void mouseReleased(){
 void zoomMap(float zoom){
   GameConstants.debugText = "MAP ZOOM!";
   GameConstants.zoomFactor = zoom;
+  GameConstants.zoomFactorAccumulated *=GameConstants.zoomFactor;
   armySelector.updateWithZoomFactor();
 }
 

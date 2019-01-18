@@ -11,6 +11,7 @@ static class GameConstants{
   
   //  
   static float zoomFactor              = 1;
+  static float zoomFactorAccumulated   = GameConstants.zoomFactor;
   
   //
   static String debugText              = "DEBUG";
