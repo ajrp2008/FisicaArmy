@@ -9,21 +9,17 @@ class ArmySelector {
   }
 
   boolean selectArmy(float x, float y) {
-    ArmyPathFinder targetArmy = null;
+    ArmyPathFinder newSelectedArmy = null;
 
     for (ArmyPathFinder a : armyList) {
       PVector msp = a.army.meanSoldierPosition();
-
       if (dist(msp.x, msp.y, x, y)<armySelectorSize) {
-        if (selectedArmy != null && !a.wayPoints.isEmpty()) {
-          targetArmy = a; 
-          targetArmy.wayPoints.clear();
-        } else {
-          targetArmy = a;
-        }
+          newSelectedArmy = a; 
+          newSelectedArmy.wayPoints.clear();
+          newSelectedArmy.nextPoint = null;
       }
     }
-    selectedArmy = targetArmy;
+    selectedArmy = newSelectedArmy;
 
     return selectedArmy != null;
   }
@@ -65,15 +61,12 @@ class ArmySelector {
       if(a == selectedArmy) fill(255,255,0,100);
       ellipse(msp.x, msp.y, armySelectorSize, armySelectorSize);
       stroke(255,0,0);
+      if(a == selectedArmy)textSize(30); else textSize(15); 
+      text(a.army.name,msp.x+armySelectorSize/2, msp.y);
+      text( ""+a.army.absolutPosition,msp.x+armySelectorSize/2, msp.y+30);
       ///////////////////////////////////////////
 
-      //ellipse(a.army.absolutPosition.x,a.army.absolutPosition.y,70,70);
     }
-    if (selectedArmy!=null && selectedArmy.wayPoints.isEmpty()) {
-      PVector p =selectedArmy.army.absolutPosition;
-      noFill();
-      stroke(255, 0, 0);
-      ellipse(p.x, p.y, 40, 40);
-    }
+
   }
 }

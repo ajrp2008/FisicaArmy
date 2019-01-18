@@ -4,7 +4,6 @@ FWorld            world;
 ArmySelector      armySelector; 
 Button            zoomInButton,zoomOutButton; 
 
-String            debugText       = "DEBUG";
 
 void setup(){
   size(1440,2960);
@@ -35,7 +34,7 @@ void draw(){
   //DEBUG TEXT 
   textSize(40); 
   fill(200,0,0);
-  text(debugText,70,70);
+ // text(GameConstants.debugText,70,70);
   //  
   world.step();
   armySelector.drawSelector();
@@ -50,24 +49,20 @@ void mousePressed(){
   if(zoomInButton.isPushed(mouseX,mouseY)){ zoomInButton_click();return;}
   if(zoomOutButton.isPushed(mouseX,mouseY)){ zoomOutButton_click(); return;}
   boolean result = armySelector.selectArmy(mouseX,mouseY);
-  debugText = "MOUSE PRESSED";
 }
 
 public void zoomInButton_click() {
   zoomMap(1.1);
-  debugText = "ZOOM-IN BUTTON PRESSED";
 }
 
 public void zoomOutButton_click() {
   zoomMap(0.9);
-  debugText = "ZOOM-OUT BUTTON PRESSED";
 }
 
 void mouseDragged(){
   if(zoomInButton.isPressed || zoomOutButton.isPressed ){return;}
   
   boolean result = armySelector.moveArmy(mouseX,mouseY);
-  debugText = "MOUSE DRAGGED:" + (mouseX - pmouseX);
   if(!result){
     moveMap(mouseX-pmouseX,mouseY-pmouseY);
   }
@@ -79,11 +74,13 @@ void mouseReleased(){
 }
 
 void zoomMap(float zoom){
+  GameConstants.debugText = "MAP ZOOM!";
   GameConstants.zoomFactor = zoom;
   armySelector.updateWithZoomFactor();
 }
 
 void moveMap(float dx, float dy){
+    GameConstants.debugText = "MAP MOVE!";
   armySelector.updateMapPosition(dx,dy);
 }
 
