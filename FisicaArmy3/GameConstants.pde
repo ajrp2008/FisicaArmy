@@ -1,19 +1,29 @@
 static class GameConstants{
   
-  //INITIAL CONDITIONS
-  static float soldierSpeedStart       = 30;
+  static float soldierSpeedStart;
+  static float soldierSizeStart;
+  static float armyGapSizeStart;
+  static float wayPointGapStart;
+  static float armySelectorSizeStart;
+  static float zoomFactor;
+  static float zoomFactorAccumulated;
+  static String debugText;
   
-  static float soldierSizeStart        = 4;
-  static float armyGapSizeStart        = 6;
-  static float wayPointGapStart        = 50;
   
-  static float armySelectorSizeStart   = 50;
+  static void initGameConstants(){
+    //INITIAL CONDITIONS
+    soldierSpeedStart       = 30;
   
-  //  
-  static float zoomFactor              = 1;
-  static float zoomFactorAccumulated   = GameConstants.zoomFactor;
+    soldierSizeStart        = 4;
+    armyGapSizeStart        = 6;
+    wayPointGapStart        = 50;
   
-  //
-  static String debugText              = "DEBUG";
+    armySelectorSizeStart   = 50;
+  
+    zoomFactor              = 1;
+    zoomFactorAccumulated   = GameConstants.zoomFactor;
+  
+    debugText              = "DEBUG";
+  }
 
 }
