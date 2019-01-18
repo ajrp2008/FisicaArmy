@@ -9,8 +9,8 @@ float             buttonHeight = 100, buttonWidth = 300, buttonGap =50, buttonTo
 
 
 void setup(){
-  //size(1440,2960);
-  fullScreen();
+  size(1440,2960);
+  //fullScreen();
   smooth();
 
   initGame();
@@ -44,7 +44,7 @@ void initGame(){
 }
 
 void draw(){
-  background(50);
+  background(0);
   //DEBUG TEXT 
   textSize(40); 
   fill(200,0,0);

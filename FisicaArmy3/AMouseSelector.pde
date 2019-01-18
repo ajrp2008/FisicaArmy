@@ -52,7 +52,7 @@ class ArmySelector {
 
   void drawSelector() {
     for (ArmyPathFinder a : armyList) {
-      a.drawWayPoints();
+      a.drawWayPoints(a == selectedArmy);
 
       //CENTER OF ARMY///////////////////////////
       PVector msp = a.army.meanSoldierPosition();

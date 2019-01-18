@@ -16,9 +16,10 @@ static class GameConstants{
   
     soldierSizeStart        = 4;
     armyGapSizeStart        = 6;
-    wayPointGapStart        = 50;
   
     armySelectorSizeStart   = 50;
+  
+    wayPointGapStart        = 20;
   
     zoomFactor              = 1;
     zoomFactorAccumulated   = GameConstants.zoomFactor;

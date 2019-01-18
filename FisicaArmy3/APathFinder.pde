@@ -46,17 +46,37 @@ class ArmyPathFinder{
        wayPoints.add(new PVector(x,y));
   }
   
-  void drawWayPoints(){
+  void drawWayPoints(boolean selected){
+if(!wayPoints.isEmpty()){
+   if(selected) stroke(army.r,army.g,army.b,300);else stroke(army.r,army.g,army.b,50);
+          noFill();
+
+beginShape();
+  PVector msp = army.meanSoldierPosition();
+  vertex(msp.x,msp.y);
+  vertex(army.absolutPosition.x,army.absolutPosition.y);
     for(PVector p: wayPoints){
       if(army.armyState != army.armyWar){
-        fill(255,255,255);
-        noStroke();
-        ellipse(p.x,p.y,4,4);
+       // fill(255,255,255);
+        //noStroke();
+        vertex(p.x,p.y);
+
+        //ellipse(p.x,p.y,4,4);
       }
     }
-    
+   endShape();
+   ellipse(army.absolutPosition.x,army.absolutPosition.y,3,3);
+ for(PVector p: wayPoints){
+      if(army.armyState != army.armyWar){
+      // fill(255,255,255);
+        //noFill();
+        //vertex(p.x,p.y);
+       // stroke(255);
+        ellipse(p.x,p.y,3,3);
+      }
+}
     
   }
-  
+  } 
 
 }
