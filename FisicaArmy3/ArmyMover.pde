@@ -24,14 +24,25 @@ class ArmyMover{
   
   PVector meanSoldierPosition(){
     PVector meanPos  = new PVector();
-    float   armySize = 0;
+    float   sizeAlive = 0;
     for(Soldier s: soldiers){
-      meanPos.add(s.getX(),s.getY());
-      if(s.isAlive)armySize++;
+      if(s.isAlive){
+        meanPos.add(s.getX(),s.getY());
+        sizeAlive++;
+      }
     }
-    meanPos.div(armySize);
+    meanPos.div(sizeAlive);
     
     return meanPos;
+  }
+  
+  float armySizeAlive(){
+    float   sizeAlive = 0;
+    for(Soldier s: soldiers){
+      if(s.isAlive)sizeAlive++;
+    }
+    
+    return sizeAlive;
   }
   
   void updateArmyToZoom(){

@@ -54,6 +54,7 @@ class Soldier extends FCircle{
     println("hit x:"+x);
     if(x<2){
       println("There is at hit :"+ x + "SOLDIER DEAD !!!");
+      opponent.isAlive = false;
       world.remove(opponent);
     }
   }

@@ -64,6 +64,7 @@ class ArmySelector {
       if(a == selectedArmy)textSize(30); else textSize(15); 
       text(a.army.name,msp.x+armySelectorSize/2, msp.y);
       text( ""+a.army.absolutPosition,msp.x+armySelectorSize/2, msp.y+30);
+      text( "Start. "+ a.army.soldiers.size() + " Alive:"+a.army.armySizeAlive(),msp.x+armySelectorSize/2, msp.y+60);
       ///////////////////////////////////////////
 
     }

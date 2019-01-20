@@ -44,7 +44,7 @@ void initGame(){
 }
 
 void draw(){
-  background(0);
+  background(100);
   //DEBUG TEXT 
   textSize(40); 
   fill(200,0,0);
