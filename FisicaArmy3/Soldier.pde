@@ -51,9 +51,9 @@ class Soldier extends FCircle{
 
   void attack(Soldier opponent){
     int x = (int)random(1,100);
-    println("hit x:"+x);
+    //println("hit x:"+x);
     if(x<2){
-      println("There is at hit :"+ x + "SOLDIER DEAD !!!");
+      //println("There is at hit :"+ x + "SOLDIER DEAD !!!");
       opponent.isAlive = false;
       world.remove(opponent);
     }
