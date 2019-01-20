@@ -1,10 +1,10 @@
-class Army{
+class ArmyMover{
   
   String              name;
   
-  ArmyState           armyState;
-  ArmyState           armyMarch            = new ArmyStateMarch(this);
-  ArmyState           armyWar              = new ArmyStateWar(this);              
+  ArmyMoveState           armyState;
+  ArmyMoveState           armyMarch            = new ArmyMoveStateMarch(this);
+  ArmyMoveState           armyWar              = new ArmyMoveStateWar(this);              
   
   ArrayList<Soldier>  soldiers             = new ArrayList<Soldier>();
   PVector             absolutPosition      = new PVector();  
@@ -13,7 +13,7 @@ class Army{
   int                 armySize             = 25;
   float               r,g,b;  
       
-  Army(float x, float y, String name,float r,float g,float b){
+  ArmyMover(float x, float y, String name,float r,float g,float b){
     armyState = armyMarch;
     absolutPosition.set(x,y);
     this.r = r; this.g = g; this.b = b;
@@ -40,7 +40,7 @@ class Army{
   
   void updateMapPosition(float dx, float dy){
     absolutPosition.add(dx, dy);
-      ((ArmyStateWar)(armyWar)).positionContact.add(dx, dy);
+      ((ArmyMoveStateWar)(armyWar)).positionContact.add(dx, dy);
       for (Soldier s :soldiers) {
         s.setPosition(s.getX()+dx, s.getY()+dy);
       }

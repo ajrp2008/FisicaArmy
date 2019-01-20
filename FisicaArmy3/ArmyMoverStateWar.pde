@@ -1,6 +1,6 @@
-class ArmyStateWar implements ArmyState {
+class ArmyMoveStateWar implements ArmyMoveState {
 
-  Army      army;
+  ArmyMover      army;
   FContact  firstContact;
   PVector   positionContact = new PVector();
 
@@ -8,7 +8,7 @@ class ArmyStateWar implements ArmyState {
   int       colisionFrame  = 50;
   
 
-  ArmyStateWar(Army army) {
+  ArmyMoveStateWar(ArmyMover army) {
     this.army = army;
   }
 
@@ -20,7 +20,8 @@ class ArmyStateWar implements ArmyState {
 
   void updateArmySoldiers() {
     frameCount++;
-    if ((frameCount%(20*(int)random(1,3))==0 || frameCount%50==0) && frameCount>colisionFrame) { //After 50 frames - move towa
+    //if ((frameCount%(20*(int)random(1,3))==0 || frameCount%50==0) && frameCount>colisionFrame) { //After 50 frames - move towa
+      if(frameCount == 1 || (frameCount%50==0 && frameCount>colisionFrame)){
       for (Soldier s : army.soldiers) {
         float dx = -s.getX() + positionContact.x; //s.army.absolutPosition.x;
         float dy = -s.getY() + positionContact.y;//s.army.absolutPosition.y;
@@ -28,9 +29,12 @@ class ArmyStateWar implements ArmyState {
         //p.normalize();
         p.mult(0.25*random(1,3));
         s.setVelocity(p.x, p.y);
-        s.setFilterBits(11);
+      //  s.setFilterBits(11);
       }
     }
+    
+    
+    
   }
 
   void updateState() {

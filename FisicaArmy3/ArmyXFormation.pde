@@ -1,4 +1,4 @@
-void createSoldiers(Army army) {
+void createSoldiers(ArmyMover army) {
   for (int i=0; i<army.armySize; i++) {
     Soldier s = new Soldier(army, new PVector());
     s.setFill(army.r, army.g, army.b);
@@ -7,7 +7,7 @@ void createSoldiers(Army army) {
 }
 
 
-void initSquareFormation(Army army) {
+void initSquareFormation(ArmyMover army) {
   for (int i=0; i<army.soldiers.size(); i++) {
     float length       = sqrt(army.soldiers.size());
     int column         = i%(int)length; 

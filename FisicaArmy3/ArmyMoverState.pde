@@ -1,4 +1,4 @@
-interface ArmyState{
+interface ArmyMoveState{
   
     void commandArmyPosition(float x, float y);
 

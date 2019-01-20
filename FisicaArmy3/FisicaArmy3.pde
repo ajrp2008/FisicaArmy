@@ -32,12 +32,12 @@ void initGame(){
   ellipseMode(CENTER);
   GameConstants.initGameConstants();
   armySelector    = new ArmySelector();
-  armySelector.addArmy(new ArmyPathFinder(new Army(100,100,"A",0,255,0)));
-  armySelector.addArmy(new ArmyPathFinder(new Army(200,150,"B",255,255,255)));
-  armySelector.addArmy(new ArmyPathFinder(new Army(100,200,"C",200,0,0)));  
-  armySelector.addArmy(new ArmyPathFinder(new Army(400,100,"D",0,255,0)));
-  armySelector.addArmy(new ArmyPathFinder(new Army(600,150,"E",255,255,255)));
-  armySelector.addArmy(new ArmyPathFinder(new Army(400,200,"F",200,0,0)));
+  armySelector.addArmy(new ArmyPathFinder(new ArmyMover(100,100,"A",0,255,0)));
+  armySelector.addArmy(new ArmyPathFinder(new ArmyMover(200,150,"B",255,255,255)));
+  armySelector.addArmy(new ArmyPathFinder(new ArmyMover(100,200,"C",200,0,0)));  
+  armySelector.addArmy(new ArmyPathFinder(new ArmyMover(400,100,"D",0,255,0)));
+  armySelector.addArmy(new ArmyPathFinder(new ArmyMover(600,150,"E",255,255,255)));
+  armySelector.addArmy(new ArmyPathFinder(new ArmyMover(400,200,"F",200,0,0)));
  //Initial zoom based on screen size
   zoomMap(4);
   

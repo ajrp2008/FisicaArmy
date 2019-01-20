@@ -1,9 +1,9 @@
-class ArmyStateMarch implements ArmyState{
+class ArmyMoveStateMarch implements ArmyMoveState{
 
-  Army    army;
-  boolean collisionDetected = false;
+  ArmyMover    army;
+ // boolean collisionDetected = false;
 
-  ArmyStateMarch(Army army){
+  ArmyMoveStateMarch(ArmyMover army){
     this.army = army;
   }
 
@@ -25,15 +25,15 @@ class ArmyStateMarch implements ArmyState{
     for(Soldier s: army.soldiers){
       s.updatePosition();
       if(s.isMarching()){      army.isMarching=true;}
-      if(s.getFilterBits()==1){collisionDetected=true;}
+    //  if(s.getFilterBits()==1){collisionDetected=true;}
     }
   }  
   
   void updateState(){
-    if(collisionDetected){
-      collisionDetected   = false;
-      army.armyState      = army.armyWar;
-    }
+   // if(collisionDetected){
+   //   collisionDetected   = false;
+    //  army.armyState      = army.armyWar;
+   // }
   }
   
   void updateArmyToZoom(){
@@ -50,6 +50,8 @@ class ArmyStateMarch implements ArmyState{
   
   void contactStarted(FContact c){
     army.armyWar.contactStarted(c);
+    army.armyState      = army.armyWar;
+ //   collisionDetected=true;
   }
   
 }

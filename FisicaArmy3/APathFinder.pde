@@ -4,9 +4,9 @@ class ArmyPathFinder{
   
   ArrayList<PVector> wayPoints = new ArrayList<PVector>();
   PVector nextPoint;
-  Army army;
+  ArmyMover army;
 
-  ArmyPathFinder(Army army){
+  ArmyPathFinder(ArmyMover army){
     this.army = army;
   }
 
