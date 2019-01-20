@@ -13,7 +13,7 @@ class ArmySelector {
 
     for (ArmyPathFinder a : armyList) {
       PVector msp = a.army.meanSoldierPosition();
-      if (dist(msp.x, msp.y, x, y)<armySelectorSize) {
+      if (dist(msp.x, msp.y, x, y)<armySelectorSize/2) {
           newSelectedArmy = a; 
           newSelectedArmy.wayPoints.clear();
           newSelectedArmy.nextPoint = null;
