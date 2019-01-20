@@ -1,13 +1,16 @@
-interface AMoverState{
+interface ArmyMoverState{
 
   
   void firstSelectionArmy();
   
-  void dragFromArmy();
+  void dragFromArmy(float x,float y);
   
-  void secondSelectionArmy();
+  void secondSelection(float x, float y);
   
   
-  void display();
+  void update();
+  
+  void display(boolean selected);
+  
   
 }
