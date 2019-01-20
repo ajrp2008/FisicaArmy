@@ -1,18 +1,18 @@
 class ArmySelector {
   float                     armySelectorSize   = GameConstants.armySelectorSizeStart;
 
-  ArmyPathFinder             selectedArmy      = null;
-  ArrayList<ArmyPathFinder>  armyList          = new ArrayList<ArmyPathFinder>();
+  ArmyMover             selectedArmy      = null;
+  ArrayList<ArmyMover>  armyList          = new ArrayList<ArmyMover>();
 
-  void addArmy(ArmyPathFinder a) {
+  void addArmy(ArmyMover a) {
     armyList.add(a);
   }
 
   boolean selectArmy(float x, float y) {
-    ArmyPathFinder newSelectedArmy = null;
+    ArmyMover newSelectedArmy = null;
 
-    for (ArmyPathFinder a : armyList) {
-      PVector msp = a.army.meanSoldierPosition();
+    for (ArmyMover a : armyList) {
+      PVector msp = a.soldierMover.meanSoldierPosition();
       if (dist(msp.x, msp.y, x, y)<armySelectorSize/2) {
           newSelectedArmy = a; 
           newSelectedArmy.wayPoints.clear();
@@ -33,38 +33,38 @@ class ArmySelector {
 
   void updateWithZoomFactor() {
     armySelectorSize *= GameConstants.zoomFactor;
-    for (ArmyPathFinder ap : this.armyList) {
+    for (ArmyMover ap : this.armyList) {
       ap.updateWithZoomFactor();
     }
   }
 
   void updateMapPosition(float dx, float dy) {     
-    for (ArmyPathFinder ap : armySelector.armyList) {
+    for (ArmyMover ap : armySelector.armyList) {
       ap.updateMapPosition(dx,dy);
     }
   }
 
   void update() {
-    for (ArmyPathFinder a : armyList) {
+    for (ArmyMover a : armyList) {
       a.update();
     }
   }
 
   void drawSelector() {
-    for (ArmyPathFinder a : armyList) {
+    for (ArmyMover a : armyList) {
       a.drawWayPoints(a == selectedArmy);
 
       //CENTER OF ARMY///////////////////////////
-      PVector msp = a.army.meanSoldierPosition();
+      PVector msp = a.soldierMover.meanSoldierPosition();
       noStroke();
       fill(30,0,0,100);
       if(a == selectedArmy) fill(255,255,0,100);
       ellipse(msp.x, msp.y, armySelectorSize, armySelectorSize);
       stroke(255,0,0);
       if(a == selectedArmy)textSize(30); else textSize(15); 
-      text(a.army.name,msp.x+armySelectorSize/2, msp.y);
-      text( ""+a.army.absolutPosition,msp.x+armySelectorSize/2, msp.y+30);
-      text( "Start. "+ a.army.soldiers.size() + " Alive:"+a.army.armySizeAlive(),msp.x+armySelectorSize/2, msp.y+60);
+      text(a.soldierMover.name,msp.x+armySelectorSize/2, msp.y);
+      text( ""+a.soldierMover.absolutPosition,msp.x+armySelectorSize/2, msp.y+30);
+      text( "Start. "+ a.soldierMover.soldiers.size() + " Alive:"+a.soldierMover.armySizeAlive(),msp.x+armySelectorSize/2, msp.y+60);
       ///////////////////////////////////////////
 
     }

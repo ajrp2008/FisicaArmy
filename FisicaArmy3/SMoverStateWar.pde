@@ -1,6 +1,6 @@
-class ArmyMoveStateWar implements ArmyMoveState {
+class SoldiersMoverStateWar implements SoldiersMoveState {
 
-  ArmyMover      army;
+  SoldiersMover      army;
   FContact  firstContact;
   PVector   positionContact = new PVector();
 
@@ -8,7 +8,7 @@ class ArmyMoveStateWar implements ArmyMoveState {
   int       colisionFrame  = 50;
   
 
-  ArmyMoveStateWar(ArmyMover army) {
+  SoldiersMoverStateWar(SoldiersMover army) {
     this.army = army;
   }
 

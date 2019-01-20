@@ -1,23 +1,23 @@
-class ArmyPathFinder{
+class ArmyMover{
   
   float wayPointsGap = GameConstants.wayPointGapStart;
   
   ArrayList<PVector> wayPoints = new ArrayList<PVector>();
   PVector nextPoint;
-  ArmyMover army;
+  SoldiersMover soldierMover;
 
-  ArmyPathFinder(ArmyMover army){
-    this.army = army;
+  ArmyMover(SoldiersMover army){
+    this.soldierMover = army;
   }
 
   void update(){
-    army.updateArmy();
+    soldierMover.updateArmy();
         
-    if(!wayPoints.isEmpty() && !army.isMarching() && nextPoint == null){
+    if(!wayPoints.isEmpty() && !soldierMover.isMarching() && nextPoint == null){
       nextPoint = wayPoints.get(0);
-      army.commandArmyHeading(nextPoint.x,nextPoint.y);
-    }else if(!wayPoints.isEmpty() && !army.isMarching() && nextPoint != null){
-       army.commandArmyPosition(nextPoint.x,nextPoint.y);
+      soldierMover.commandArmyHeading(nextPoint.x,nextPoint.y);
+    }else if(!wayPoints.isEmpty() && !soldierMover.isMarching() && nextPoint != null){
+       soldierMover.commandArmyPosition(nextPoint.x,nextPoint.y);
        wayPoints.remove(nextPoint);
        nextPoint = null;
     }  
@@ -25,7 +25,7 @@ class ArmyPathFinder{
   
     void updateWithZoomFactor(){
       wayPointsGap *= GameConstants.zoomFactor;
-      army.updateArmyToZoom();
+      soldierMover.updateArmyToZoom();
       for(PVector wp : wayPoints){
         wp.mult(GameConstants.zoomFactor);
       }
@@ -35,11 +35,11 @@ class ArmyPathFinder{
     for (PVector wp : wayPoints) {
         wp.add(dx, dy);
       }
-      army.updateMapPosition(dx,dy);
+      soldierMover.updateMapPosition(dx,dy);
     }
   
   void addWayPoint(float x, float y){
-      PVector lastPoint  = wayPoints.isEmpty() ? army.absolutPosition : wayPoints.get(wayPoints.size()-1);
+      PVector lastPoint  = wayPoints.isEmpty() ? soldierMover.absolutPosition : wayPoints.get(wayPoints.size()-1);
       float distance     = dist(lastPoint.x,lastPoint.y,x,y);
       
       if(distance > wayPointsGap)
@@ -48,15 +48,15 @@ class ArmyPathFinder{
   
   void drawWayPoints(boolean selected){
 if(!wayPoints.isEmpty()){
-   if(selected) stroke(army.r,army.g,army.b,300);else stroke(army.r,army.g,army.b,100);
+   if(selected) stroke(soldierMover.r,soldierMover.g,soldierMover.b,300);else stroke(soldierMover.r,soldierMover.g,soldierMover.b,100);
           noFill();
 
 beginShape();
-  PVector msp = army.meanSoldierPosition();
+  PVector msp = soldierMover.meanSoldierPosition();
   vertex(msp.x,msp.y);
-  vertex(army.absolutPosition.x,army.absolutPosition.y);
+  vertex(soldierMover.absolutPosition.x,soldierMover.absolutPosition.y);
     for(PVector p: wayPoints){
-      if(army.armyState != army.armyWar){
+      if(soldierMover.armyState != soldierMover.armyWar){
        // fill(255,255,255);
         //noStroke();
         vertex(p.x,p.y);
@@ -65,9 +65,9 @@ beginShape();
       }
     }
    endShape();
-   ellipse(army.absolutPosition.x,army.absolutPosition.y,3,3);
+   ellipse(soldierMover.absolutPosition.x,soldierMover.absolutPosition.y,3,3);
  for(PVector p: wayPoints){
-      if(army.armyState != army.armyWar){
+      if(soldierMover.armyState != soldierMover.armyWar){
       // fill(255,255,255);
         //noFill();
         //vertex(p.x,p.y);

@@ -1,9 +1,9 @@
-class ArmyMoveStateMarch implements ArmyMoveState{
+class SoldiersMoverStateMarch implements SoldiersMoveState{
 
-  ArmyMover    army;
+  SoldiersMover    army;
  // boolean collisionDetected = false;
 
-  ArmyMoveStateMarch(ArmyMover army){
+  SoldiersMoverStateMarch(SoldiersMover army){
     this.army = army;
   }
 

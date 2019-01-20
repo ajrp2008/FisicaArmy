@@ -1,13 +1,13 @@
 class Soldier extends FCircle{
     
   PVector  relPosition    =  new PVector();
-  ArmyMover     army;
+  SoldiersMover     army;
   
   boolean  isAlive        = true;
   
   float    speed          = GameConstants.soldierSpeedStart;
     
-  Soldier(ArmyMover army,PVector relPos){
+  Soldier(SoldiersMover army,PVector relPos){
     super(GameConstants.soldierSizeStart);
     this.army         = army;
     this.relPosition  = relPos;
