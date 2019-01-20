@@ -108,8 +108,8 @@ void moveMap(float dx, float dy){
 
 void contactStarted(FContact c) {
     if(!c.getBody1().getName().equals(c.getBody2().getName())){
-      c.getBody1().setFilterBits(1);
-      c.getBody2().setFilterBits(1);
+     // c.getBody1().setFilterBits(1);
+     // c.getBody2().setFilterBits(1);
       Soldier s1 = (Soldier)c.getBody1();
       Soldier s2 = (Soldier)c.getBody2();
       s1.army.contactStarted(c);

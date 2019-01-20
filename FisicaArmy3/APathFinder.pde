@@ -48,7 +48,7 @@ class ArmyPathFinder{
   
   void drawWayPoints(boolean selected){
 if(!wayPoints.isEmpty()){
-   if(selected) stroke(army.r,army.g,army.b,300);else stroke(army.r,army.g,army.b,50);
+   if(selected) stroke(army.r,army.g,army.b,300);else stroke(army.r,army.g,army.b,100);
           noFill();
 
 beginShape();
