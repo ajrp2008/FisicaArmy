@@ -21,33 +21,55 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
             
           PVector msp = armyMover.soldierMover.meanSoldierPosition();
     
+    
+           //FIRST SELECTION: SELECT THIS ARMY
           if (dist(msp.x, msp.y, x, y)<armySelectorSize/2) {
             newSelectedArmy = armyMover; 
-            wayPoints.clear();
-            nextPoint = null;
-            approveRoute = false;
+            
+           // wayPoints.clear();
+           // nextPoint = null;
+            //approveRoute = false;
           }
           
           return newSelectedArmy;
   }
   
   void dragFromArmy(float x, float y){
+    
+    
+    //DRAG : ONLY WHEN NOT ARMY SELECTED AND NOT ROUTE APPROVED
+    PVector msp = armyMover.soldierMover.meanSoldierPosition();  
+    if(approveRoute || dist(msp.x, msp.y, x, y)<armySelectorSize/2)return;
+     
+      //DRAG : NEW WAYPOINT WHEN DISTANCE MORE THAN GAP!
       PVector lastPoint  = wayPoints.isEmpty() ? armyMover.soldierMover.absolutPosition : wayPoints.get(wayPoints.size()-1);
-      float distance     = dist(lastPoint.x,lastPoint.y,x,y);
-      
+      float distance     = dist(lastPoint.x,lastPoint.y,x,y);      
       if(distance > wayPointsGap)
        wayPoints.add(new PVector(x,y));
 
   }
   
   void secondSelection(float x, float y){
+    
+    //SECOND SELECTION: ONLY WHEN WAYPOINTS EXISTS
    if(wayPoints.isEmpty())return;
    
+   
+   //SECOND SELECTION: Select last wayPoint - approve !!
    PVector wp =  wayPoints.get(wayPoints.size()-1);
    float distFromLastWayPoint = dist(wp.x,wp.y,x,y);
       
    if(distFromLastWayPoint < armySelectorSize/2){
      approveRoute = true;
+   }
+   
+   //SECOND SELECTION:  Select army again and route exists -> delete route!
+   PVector msp = armyMover.soldierMover.meanSoldierPosition();
+    
+   if (dist(msp.x, msp.y, x, y)<armySelectorSize/2 && !wayPoints.isEmpty()) {
+                 wayPoints.clear();
+            nextPoint = null;
+            approveRoute = false;
    }
    
    
@@ -66,6 +88,8 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
       armyMover.soldierMover.commandArmyPosition(nextPoint.x, nextPoint.y);
       wayPoints.remove(nextPoint);
       nextPoint = null;
+    } else if(wayPoints.isEmpty()){
+      approveRoute = false;
     }
   }
     
