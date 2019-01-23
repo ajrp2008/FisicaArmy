@@ -12,14 +12,12 @@ class ArmySelector {
     ArmyMover newSelectedArmy = null;
 
     for (ArmyMover a : armyList) {
-      PVector msp = a.soldierMover.meanSoldierPosition();
-      if (dist(msp.x, msp.y, x, y)<armySelectorSize/2) {
-          newSelectedArmy = a; 
-          newSelectedArmy.wayPoints.clear();
-          newSelectedArmy.nextPoint = null;
-      }
+      ArmyMover selected = a.firstSelectionArmy(x,y);
+      if(selected!=null) newSelectedArmy = selected;
     }
+    
     selectedArmy = newSelectedArmy;
+  
 
     return selectedArmy != null;
   }
