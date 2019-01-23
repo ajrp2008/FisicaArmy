@@ -15,22 +15,17 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
   }
 
   ArmyMover firstSelectionArmy(float x,float y){
-    
           ArmyMover newSelectedArmy = null;
             
           PVector msp = armyMover.soldierMover.meanSoldierPosition();
     
-          println("Mena dist" + armyMover.soldierMover.name + " "+ dist(msp.x, msp.y, x, y) + " < " + armySelectorSize/2.0 );
-    
           if (dist(msp.x, msp.y, x, y)<armySelectorSize/2) {
-            println(armyMover.soldierMover.name + " SELECTED");
             newSelectedArmy = armyMover; 
             wayPoints.clear();
             nextPoint = null;
           }
           
           return newSelectedArmy;
-      
   }
   
   void dragFromArmy(float x, float y){
