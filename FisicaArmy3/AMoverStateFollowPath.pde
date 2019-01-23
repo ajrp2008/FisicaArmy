@@ -4,7 +4,6 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
   
   ArmyMover armyMover;
   
-  float armySelectorSize   = GameConstants.armySelectorSizeStart;
   
   float wayPointsGap = GameConstants.wayPointGapStart;
 
@@ -23,7 +22,7 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
     
     
            //FIRST SELECTION: SELECT THIS ARMY
-          if (dist(msp.x, msp.y, x, y)<armySelectorSize/2) {
+          if (dist(msp.x, msp.y, x, y)<armyMover.armySelectorSize/2) {
             newSelectedArmy = armyMover; 
             
            // wayPoints.clear();
@@ -36,7 +35,7 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
             PVector wp =  wayPoints.get(wayPoints.size()-1);
            float distFromLastWayPoint = dist(wp.x,wp.y,x,y);
       
-           if(distFromLastWayPoint < armySelectorSize/2){
+           if(distFromLastWayPoint < armyMover.armySelectorSize/2){
           
           
           newSelectedArmy = armyMover;
@@ -52,7 +51,7 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
     
     //DRAG : ONLY WHEN NOT ARMY SELECTED AND NOT ROUTE APPROVED
     PVector msp = armyMover.soldierMover.meanSoldierPosition();  
-    if(approveRoute || dist(msp.x, msp.y, x, y)<armySelectorSize/2)return;
+    if(approveRoute || dist(msp.x, msp.y, x, y)<armyMover.armySelectorSize/2)return;
      
       //DRAG : NEW WAYPOINT WHEN DISTANCE MORE THAN GAP!
       PVector lastPoint  = wayPoints.isEmpty() ? armyMover.soldierMover.absolutPosition : wayPoints.get(wayPoints.size()-1);
@@ -72,14 +71,14 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
    PVector wp =  wayPoints.get(wayPoints.size()-1);
    float distFromLastWayPoint = dist(wp.x,wp.y,x,y);
       
-   if(distFromLastWayPoint < armySelectorSize/2){
+   if(distFromLastWayPoint < armyMover.armySelectorSize/2){
      approveRoute = true;
    }
    
    //SECOND SELECTION:  Select army again and route exists -> delete route!
    PVector msp = armyMover.soldierMover.meanSoldierPosition();
     
-   if (dist(msp.x, msp.y, x, y)<armySelectorSize/2 && !wayPoints.isEmpty()) {
+   if (dist(msp.x, msp.y, x, y)<armyMover.armySelectorSize/2 && !wayPoints.isEmpty()) {
                  wayPoints.clear();
             nextPoint = null;
             approveRoute = false;
@@ -134,7 +133,7 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
           ellipse(p.x, p.y, 3, 3);
           
           if(wayPoints.indexOf(p) >=( wayPoints.size()-1)){
-          ellipse(p.x, p.y,armySelectorSize , armySelectorSize);
+          ellipse(p.x, p.y,armyMover.armySelectorSize , armyMover.armySelectorSize);
           }
           
         }
@@ -143,7 +142,7 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
   }
 
   void updateWithZoomFactor() {
-    armySelectorSize*= GameConstants.zoomFactor;
+    armyMover.armySelectorSize*= GameConstants.zoomFactor;
     wayPointsGap *= GameConstants.zoomFactor;
     armyMover.soldierMover.updateArmyToZoom();
     for (PVector wp : wayPoints) {
@@ -157,5 +156,11 @@ void updateMapPosition(float dx, float dy) {
     }
     armyMover.soldierMover.updateMapPosition(dx, dy);
   }
+  
+      void contactStarted(FContact c){
+        this.armyMover.soldierMover.contactStarted(c);
+        this.armyMover.moverState = this.armyMover.moverStateWar;
+      }
+
 
 }

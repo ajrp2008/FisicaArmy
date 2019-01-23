@@ -113,7 +113,7 @@ void contactStarted(FContact c) {
      // c.getBody2().setFilterBits(1);
       Soldier s1 = (Soldier)c.getBody1();
       Soldier s2 = (Soldier)c.getBody2();
-      s1.army.contactStarted(c);
-      s2.army.contactStarted(c);
+      s1.army.armyMover.contactStarted(c);
+      s2.army.armyMover.contactStarted(c);
     }
 }

@@ -17,4 +17,7 @@ interface ArmyMoverState {
 
   void updateMapPosition(float dx, float dy);
 
+  void contactStarted(FContact c);
+
+
 }

@@ -1,6 +1,10 @@
 class ArmyMover {
 
+    float armySelectorSize   = GameConstants.armySelectorSizeStart;
+
+  
   ArmyMoverStateFollowPath   moverStateFollowPath = new ArmyMoverStateFollowPath(this);
+  ArmyMoverStateWar          moverStateWar        = new ArmyMoverStateWar(this);
 
   ArmyMoverState             moverState           = moverStateFollowPath;
 
@@ -8,6 +12,7 @@ class ArmyMover {
 
   ArmyMover(SoldiersMover army) {
     this.soldierMover = army;
+    this.soldierMover.armyMover = this;
   }
   
   ArmyMover firstSelectionArmy(float x,float y){
@@ -37,4 +42,9 @@ class ArmyMover {
   void drawWayPoints(boolean selected) {
     moverState.display(selected);
   }
+  
+  void contactStarted(FContact c){
+    moverState.contactStarted(c);
+  }
+
 }

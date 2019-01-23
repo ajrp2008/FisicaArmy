@@ -1,5 +1,7 @@
 class SoldiersMover{
   
+  ArmyMover           armyMover;
+  
   String              name;
   
   SoldiersMoveState           armyState;
