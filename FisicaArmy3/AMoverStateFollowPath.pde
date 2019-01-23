@@ -30,6 +30,19 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
            // nextPoint = null;
             //approveRoute = false;
           }
+                           
+                           //FIRST SELECTION: SELECT LAST WAYPOINT
+          if(!wayPoints.isEmpty()){
+            PVector wp =  wayPoints.get(wayPoints.size()-1);
+           float distFromLastWayPoint = dist(wp.x,wp.y,x,y);
+      
+           if(distFromLastWayPoint < armySelectorSize/2){
+          
+          
+          newSelectedArmy = armyMover;
+        }}
+          
+          
           
           return newSelectedArmy;
   }
