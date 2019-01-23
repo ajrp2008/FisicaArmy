@@ -1,5 +1,7 @@
 class ArmyMoverStateFollowPath implements ArmyMoverState{
 
+  boolean approveRoute = false;
+  
   ArmyMover armyMover;
   
   float armySelectorSize   = GameConstants.armySelectorSizeStart;
@@ -23,6 +25,7 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
             newSelectedArmy = armyMover; 
             wayPoints.clear();
             nextPoint = null;
+            approveRoute = false;
           }
           
           return newSelectedArmy;
@@ -38,11 +41,24 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
   }
   
   void secondSelection(float x, float y){
+   if(wayPoints.isEmpty())return;
+   
+   PVector wp =  wayPoints.get(wayPoints.size()-1);
+   float distFromLastWayPoint = dist(wp.x,wp.y,x,y);
+      
+   if(distFromLastWayPoint < armySelectorSize/2){
+     approveRoute = true;
+   }
+   
+   
   }
   
   
   void update(){
     
+      armyMover.soldierMover.updateArmy();
+
+  if(approveRoute){
     if (!wayPoints.isEmpty() && !armyMover.soldierMover.isMarching() && nextPoint == null) {
       nextPoint = wayPoints.get(0);
       armyMover.soldierMover.commandArmyHeading(nextPoint.x, nextPoint.y);
@@ -51,7 +67,8 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
       wayPoints.remove(nextPoint);
       nextPoint = null;
     }
-
+  }
+    
   }
   
   void display(boolean selected){
@@ -78,6 +95,11 @@ class ArmyMoverStateFollowPath implements ArmyMoverState{
       for (PVector p : wayPoints) {
         if (armyMover.soldierMover.armyState != armyMover.soldierMover.armyWar) {
           ellipse(p.x, p.y, 3, 3);
+          
+          if(wayPoints.indexOf(p) >=( wayPoints.size()-1)){
+          ellipse(p.x, p.y,armySelectorSize , armySelectorSize);
+          }
+          
         }
       }
     }

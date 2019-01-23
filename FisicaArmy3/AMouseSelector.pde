@@ -12,9 +12,12 @@ class ArmySelector {
     ArmyMover newSelectedArmy = null;
 
     for (ArmyMover a : armyList) {
-      ArmyMover selected = a.firstSelectionArmy(x,y);
-      if(selected!=null) newSelectedArmy = selected;
+      ArmyMover selected =a.firstSelectionArmy(x,y);  
+      if(selected!=null)  newSelectedArmy = selected;
     }
+    
+    if(selectedArmy != null) selectedArmy.secondSelection(x,y);
+
     
     selectedArmy = newSelectedArmy;
   
@@ -22,9 +25,9 @@ class ArmySelector {
     return selectedArmy != null;
   }
 
-  boolean moveArmy(float x, float y) {
+  boolean dragFromArmy(float x, float y) {
     if (selectedArmy!=null) {
-      selectedArmy.addWayPoint(x, y);
+      selectedArmy.dragFromArmy(x, y);
     }
     return    selectedArmy != null;
   }

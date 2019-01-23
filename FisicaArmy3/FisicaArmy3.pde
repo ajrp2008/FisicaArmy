@@ -66,6 +66,7 @@ void mousePressed(){
   if(resetButton.isPushed(mouseX,mouseY)){ resetButton_click(); return;}
 
   boolean result = armySelector.selectArmy(mouseX,mouseY);
+  
 }
 
 public void zoomInButton_click() {
@@ -83,7 +84,7 @@ public void resetButton_click(){
 void mouseDragged(){
   if(zoomInButton.isPressed || zoomOutButton.isPressed  || resetButton.isPressed){return;}
   
-  boolean result = armySelector.moveArmy(mouseX,mouseY);
+  boolean result = armySelector.dragFromArmy(mouseX,mouseY);
   if(!result){
     moveMap(mouseX-pmouseX,mouseY-pmouseY);
   }

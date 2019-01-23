@@ -14,8 +14,11 @@ class ArmyMover {
      return moverState.firstSelectionArmy(x,y);
   }
   
+  void secondSelection(float x, float y){
+     moverState.secondSelection(x,y);
+  }
+  
   void update() {
-    soldierMover.updateArmy();
     moverState.update();
   }
 
@@ -27,7 +30,7 @@ class ArmyMover {
     moverState.updateMapPosition(dx,dy);
   }
 
-  void addWayPoint(float x, float y) {
+  void dragFromArmy(float x, float y) {
     moverState.dragFromArmy(x, y);
   }
 
