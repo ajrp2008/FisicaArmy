@@ -1,13 +1,27 @@
 class SoldiersMoverStateRetreat implements SoldiersMoveState {
 
-    
+      SoldiersMover    army;
+  PVector retreatToLocation = new PVector();
+
+  SoldiersMoverStateRetreat(SoldiersMover army){
+    this.army = army;
+  }
+
     void commandArmyPosition(float x, float y){}
 
     void commandArmyHeading(float x, float y){}
     
     void updateArmySoldiers(){}
     
-    void updateState(){}
+    void updateState(){
+        army.isMarching = false;
+    for(Soldier s: army.soldiers){
+      s.updatePosition();
+      if(s.isMarching()){      army.isMarching=true;}
+    //  if(s.getFilterBits()==1){collisionDetected=true;}
+    }
+
+    }
     
     boolean isMarching(){return false;}
     
@@ -16,12 +30,11 @@ class SoldiersMoverStateRetreat implements SoldiersMoveState {
     void retreatTo(float x, float y){}
     
     void updateArmyToZoom(){
-  /*   army.absolutPosition.mult(GameConstants.zoomFactor);
+    army.absolutPosition.mult(GameConstants.zoomFactor);
         for(Soldier s: army.soldiers){
             s.updateSoldierSizeToZoom();
-            //s.updateSoldierPositionToZoom();
-            s.setPosition(s.getX()*GameConstants.zoomFactor,s.getY()*GameConstants.zoomFactor);
-          }*/
+            s.updateSoldierPositionToZoom();
+          }
   }
 
     

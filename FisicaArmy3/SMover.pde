@@ -6,7 +6,8 @@ class SoldiersMover{
   
   SoldiersMoveState           armyState;
   SoldiersMoveState           armyMarch            = new SoldiersMoverStateMarch(this);
-  SoldiersMoveState           armyWar              = new SoldiersMoverStateWar(this);              
+  SoldiersMoveState           armyWar              = new SoldiersMoverStateWar(this);  
+  SoldiersMoveState           armyRetreat          = new SoldiersMoverStateRetreat(this);
   
   ArrayList<Soldier>  soldiers             = new ArrayList<Soldier>();
   PVector             absolutPosition      = new PVector();  

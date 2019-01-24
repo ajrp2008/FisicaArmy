@@ -71,6 +71,9 @@ class SoldiersMoverStateWar implements SoldiersMoveState {
   }
   
   void retreatTo(float x, float y){
+    ((SoldiersMoverStateRetreat)this.army.armyRetreat).retreatToLocation.set(x,y);
+    this.army.absolutPosition.set(x,y);
+    this.army.armyState = this.army.armyRetreat;
   }
   
 }

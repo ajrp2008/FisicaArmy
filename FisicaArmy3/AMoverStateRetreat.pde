@@ -15,7 +15,9 @@ class ArmyMoverStateRetreat implements ArmyMoverState{
 
   void secondSelection(float x, float y){}
 
-  void update(){}
+  void update(){
+        armyMover.soldierMover.updateArmy();
+  }
 
   void display(boolean selected){}
 
@@ -24,7 +26,9 @@ class ArmyMoverStateRetreat implements ArmyMoverState{
     armyMover.soldierMover.updateArmyToZoom();
 }
 
-  void updateMapPosition(float dx, float dy){}
+  void updateMapPosition(float dx, float dy){
+        armyMover.soldierMover.updateMapPosition(dx, dy);
+  }
 
   void contactStarted(FContact c){}
 
