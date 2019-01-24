@@ -72,8 +72,13 @@ class SoldiersMover{
     return armyState.isMarching();
   }
   
+  
   void contactStarted(FContact c) {
     armyState.contactStarted(c);
+  }
+  
+  void retreatTo(float x, float y){
+    armyState.retreatTo(x,y);
   }
   
 }

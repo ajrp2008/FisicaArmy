@@ -69,4 +69,8 @@ class SoldiersMoverStateWar implements SoldiersMoveState {
       
     }
   }
+  
+  void retreatTo(float x, float y){
+  }
+  
 }

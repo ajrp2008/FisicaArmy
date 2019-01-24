@@ -12,6 +12,8 @@ interface SoldiersMoveState{
     
     void contactStarted(FContact c);
     
+    void retreatTo(float x, float y);
+    
     void updateArmyToZoom();
     
 }

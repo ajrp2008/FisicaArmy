@@ -5,6 +5,7 @@ class ArmyMover {
   
   ArmyMoverStateFollowPath   moverStateFollowPath = new ArmyMoverStateFollowPath(this);
   ArmyMoverStateWar          moverStateWar        = new ArmyMoverStateWar(this);
+  ArmyMoverStateRetreat      moverStateRetreat    = new ArmyMoverStateRetreat(this);
 
   ArmyMoverState             moverState           = moverStateFollowPath;
 

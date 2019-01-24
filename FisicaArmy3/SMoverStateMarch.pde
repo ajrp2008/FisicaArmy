@@ -54,4 +54,7 @@ class SoldiersMoverStateMarch implements SoldiersMoveState{
  //   collisionDetected=true;
   }
   
+  void retreatTo(float x, float y){
+  }
+  
 }
