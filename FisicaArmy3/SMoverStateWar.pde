@@ -26,10 +26,8 @@ class SoldiersMoverStateWar implements SoldiersMoveState {
         float dx = -s.getX() + positionContact.x; //s.army.absolutPosition.x;
         float dy = -s.getY() + positionContact.y;//s.army.absolutPosition.y;
         PVector p = new PVector(dx,dy);
-        //p.normalize();
         p.mult(0.25*random(1,3));
         s.setVelocity(p.x, p.y);
-      //  s.setFilterBits(11);
       }
     }
     
@@ -46,7 +44,7 @@ class SoldiersMoverStateWar implements SoldiersMoveState {
      army.absolutPosition.mult(GameConstants.zoomFactor);
         for(Soldier s: army.soldiers){
             s.updateSoldierSizeToZoom();
-            //s.updateSoldierPositionToZoom();
+            s.relPosition.mult(GameConstants.zoomFactor);
             s.setPosition(s.getX()*GameConstants.zoomFactor,s.getY()*GameConstants.zoomFactor);
           }
   }
@@ -71,6 +69,7 @@ class SoldiersMoverStateWar implements SoldiersMoveState {
   }
   
   void retreatTo(float x, float y){
+    this.firstContact = null;
     ((SoldiersMoverStateRetreat)this.army.armyRetreat).retreatToLocation.set(x,y);
     this.army.absolutPosition.set(x,y);
     this.army.armyState = this.army.armyRetreat;

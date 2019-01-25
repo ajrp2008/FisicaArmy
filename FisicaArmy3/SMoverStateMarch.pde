@@ -1,7 +1,6 @@
 class SoldiersMoverStateMarch implements SoldiersMoveState{
 
   SoldiersMover    army;
- // boolean collisionDetected = false;
 
   SoldiersMoverStateMarch(SoldiersMover army){
     this.army = army;
@@ -24,23 +23,18 @@ class SoldiersMoverStateMarch implements SoldiersMoveState{
     army.isMarching = false;
     for(Soldier s: army.soldiers){
       s.updatePosition();
-      if(s.isMarching()){      army.isMarching=true;}
-    //  if(s.getFilterBits()==1){collisionDetected=true;}
+      if(s.isMarching() && s.isAlive){      army.isMarching=true;}
     }
   }  
   
   void updateState(){
-   // if(collisionDetected){
-   //   collisionDetected   = false;
-    //  army.armyState      = army.armyWar;
-   // }
   }
   
   void updateArmyToZoom(){
     army.absolutPosition.mult(GameConstants.zoomFactor);
         for(Soldier s: army.soldiers){
             s.updateSoldierSizeToZoom();
-            s.updateSoldierPositionToZoom();
+            s.updateSoldierWhenInFormationPositionToZoom();
           }
   }
   

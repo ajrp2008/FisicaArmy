@@ -17,8 +17,7 @@ class SoldiersMoverStateRetreat implements SoldiersMoveState {
         army.isMarching = false;
     for(Soldier s: army.soldiers){
       s.updatePosition();
-      if(s.isMarching()){      army.isMarching=true;}
-    //  if(s.getFilterBits()==1){collisionDetected=true;}
+      if(s.isMarching()){army.isMarching=true;}
     }
 
     }
@@ -30,10 +29,11 @@ class SoldiersMoverStateRetreat implements SoldiersMoveState {
     void retreatTo(float x, float y){}
     
     void updateArmyToZoom(){
-    army.absolutPosition.mult(GameConstants.zoomFactor);
+     army.absolutPosition.mult(GameConstants.zoomFactor);
         for(Soldier s: army.soldiers){
             s.updateSoldierSizeToZoom();
-            s.updateSoldierPositionToZoom();
+            s.relPosition.mult(GameConstants.zoomFactor);
+           s.setPosition(s.getX()*GameConstants.zoomFactor,s.getY()*GameConstants.zoomFactor);
           }
   }
 

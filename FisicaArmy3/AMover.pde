@@ -40,7 +40,7 @@ class ArmyMover {
     moverState.dragFromArmy(x, y);
   }
 
-  void drawWayPoints(boolean selected) {
+  void display(boolean selected) {
     moverState.display(selected);
   }
   

@@ -1,5 +1,5 @@
 class ArmySelector {
-  float                     armySelectorSize   = GameConstants.armySelectorSizeStart;
+  float                 armySelectorSize  = GameConstants.armySelectorSizeStart;
 
   ArmyMover             selectedArmy      = null;
   ArrayList<ArmyMover>  armyList          = new ArrayList<ArmyMover>();
@@ -53,22 +53,50 @@ class ArmySelector {
 
   void drawSelector() {
     for (ArmyMover a : armyList) {
-      a.drawWayPoints(a == selectedArmy);
-
+     
+     // if(a==selectedArmy)continue;
+      a.display(a == selectedArmy);
       //CENTER OF ARMY///////////////////////////
       PVector msp = a.soldierMover.meanSoldierPosition();
       noStroke();
-      fill(30,0,0,100);
-      if(a == selectedArmy) fill(255,255,0,100);
+      if(a == selectedArmy) fill(255,255,0,100);else fill(30,0,0,100);
       ellipse(msp.x, msp.y, armySelectorSize, armySelectorSize);
       stroke(255,0,0);
-      if(a == selectedArmy)textSize(30); else textSize(15); 
+      if(a == selectedArmy){textSize(30); continue; }else textSize(15); 
       text(a.soldierMover.name,msp.x+armySelectorSize/2, msp.y);
       text( ""+a.soldierMover.absolutPosition,msp.x+armySelectorSize/2, msp.y+30);
       text( "Start. "+ a.soldierMover.soldiers.size() + " Alive:"+a.soldierMover.armySizeAlive(),msp.x+armySelectorSize/2, msp.y+60);
+      text( a.moverState.toString(),msp.x+armySelectorSize/2, msp.y+90);
+      text( a.soldierMover.armyState.toString(),msp.x+armySelectorSize/2, msp.y+120);
+      text( "Approveroute:"+a.moverStateFollowPath.approveRoute,msp.x+armySelectorSize/2, msp.y+150);
+      text( "nextpoint:"+a.moverStateFollowPath.nextPoint,msp.x+armySelectorSize/2, msp.y+180);
+            text( "marching:"+a.soldierMover.isMarching(),msp.x+armySelectorSize/2, msp.y+210);
       ///////////////////////////////////////////
-
     }
 
   }
+  
+  void drawSelectedArmy(){
+     ArmyMover a = selectedArmy;
+      if(a==null)return;
+      //CENTER OF ARMY///////////////////////////
+     PVector msp = a.soldierMover.meanSoldierPosition();
+      noStroke();
+      stroke(255,0,0);
+      rect(msp.x+armySelectorSize/2, msp.y-30-5,900,300);
+            fill(255,255,0);
+      textSize(30);
+      text(a.soldierMover.name,msp.x+armySelectorSize/2, msp.y);
+      text( ""+a.soldierMover.absolutPosition,msp.x+armySelectorSize/2, msp.y+30);
+      text( "Start. "+ a.soldierMover.soldiers.size() + " Alive:"+a.soldierMover.armySizeAlive(),msp.x+armySelectorSize/2, msp.y+60);
+      text( a.moverState.toString(),msp.x+armySelectorSize/2, msp.y+90);
+      text( a.soldierMover.armyState.toString(),msp.x+armySelectorSize/2, msp.y+120);
+      text( "Approveroute:"+a.moverStateFollowPath.approveRoute,msp.x+armySelectorSize/2, msp.y+150);
+      text( "nextpoint:"+a.moverStateFollowPath.nextPoint,msp.x+armySelectorSize/2, msp.y+180);
+            text( "marching:"+a.soldierMover.isMarching(),msp.x+armySelectorSize/2, msp.y+210);
+      ///////////////////////////////////////////
+    
+  
+  }
+  
 }

@@ -29,6 +29,8 @@ class ArmyMoverStateWar implements ArmyMoverState {
   void secondSelection(float x, float y) {
     if(retreatToLocation != null){    
     if (dist(retreatToLocation.x,retreatToLocation.y, x, y)<armyMover.armySelectorSize/2) {
+      this.retreatToLocation = null;
+      armyMover.moverStateRetreat.retreatToLocation.set(x,y);
       armyMover.moverState   = armyMover.moverStateRetreat;
       armyMover.soldierMover.retreatTo(x,y); 
     }
@@ -52,10 +54,16 @@ class ArmyMoverStateWar implements ArmyMoverState {
   void updateWithZoomFactor() {
     armyMover.armySelectorSize*= GameConstants.zoomFactor;
     armyMover.soldierMover.updateArmyToZoom();
+        if(retreatToLocation!=null)
+        retreatToLocation.mult(GameConstants.zoomFactor);
+
   }
 
   void updateMapPosition(float dx, float dy) {
     armyMover.soldierMover.updateMapPosition(dx, dy);
+    if(retreatToLocation!=null)
+            retreatToLocation.add(dx,dy);
+
   }
 
   void contactStarted(FContact c) {
